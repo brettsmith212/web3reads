@@ -11,7 +11,7 @@ export const theme = {
     input: "2.2rem",
     h1: "4.5rem",
     h2: "3rem",
-    h3: "2.4rem",
-    h4: "1.8rem",
+    h3: "2.2rem",
+    h4: "1.6rem",
   },
 };

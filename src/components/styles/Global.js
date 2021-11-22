@@ -88,8 +88,8 @@ input {
   font-family: 'Poppins', sans-serif;
 }
 a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.fontColor};
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.fontColor};
 }
 `;
 
