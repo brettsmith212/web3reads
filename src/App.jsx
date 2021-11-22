@@ -1,10 +1,16 @@
-import "./App.css";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./components/styles/Theme";
+import GlobalStyles from "./components/styles/Global";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
-    <>
-      <h1>Web3Reads</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyles />
+        <NavBar></NavBar>
+      </>
+    </ThemeProvider>
   );
 }
 
