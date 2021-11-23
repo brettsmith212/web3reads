@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledHeader = styled.header`
-  height: 10vh;
+  height: 8rem;
   background-color: ${({ theme }) => theme.colors.header};
   display: flex;
   justify-content: center;
