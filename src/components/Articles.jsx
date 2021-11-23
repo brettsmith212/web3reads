@@ -6,14 +6,13 @@ function Articles() {
     // const response = await fetch(
     //   "http://api.linkpreview.net/?key=09ed415a6cc37c0bed1afd30f97ae8ea&q=https://www.google.com"
     // );
-    const response = await fetch("https://www.google.com");
 
     console.log(response);
     return response;
   };
 
-  const res = urlPreview();
-  console.log(res.title);
+  // const res = urlPreview();
+  // console.log(res.title);
 
   return (
     <ArticleSection>
