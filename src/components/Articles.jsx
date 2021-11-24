@@ -14,10 +14,14 @@ function Articles() {
   const urlPreview = async () => {
     try {
       const res = await fetch(
-        "http://api.linkpreview.net/?key=123456&q=https://www.google.com"
+        `http://api.linkpreview.net/?key=${
+          import.meta.env.VITE_URL_PREVIEW_KEY_TEST
+        }&q=https://www.google.com`
       );
       // const res = await fetch(
-      //   "http://api.linkpreview.net/?key=09ed415a6cc37c0bed1afd30f97ae8ea&q=https://www.freecodecamp.org/news/breaking-into-ethereum-crypto-web3-as-a-developer/"
+      //   `http://api.linkpreview.net/?key=${
+      //     import.meta.env.VITE_URL_PREVIEW_KEY
+      //   }&q=https://www.freecodecamp.org/news/breaking-into-ethereum-crypto-web3-as-a-developer/`
       // );
       const data = await res.json();
       setSiteInfo({
@@ -27,8 +31,6 @@ function Articles() {
         url: data.url,
       });
       setInformation(data);
-
-      // siteInfo = await data;
     } catch (err) {
       console.log("ERROR: ", err);
     }
@@ -54,7 +56,7 @@ function Articles() {
           >
             How to Break into Ethereum, Crypto, and Web3 as a Developer
           </a>
-          <img src="./assets/testimg.jpeg" alt="" />
+          {/* <img src="./assets/testimg.jpeg" alt="" /> */}
         </Card>
         <Card>
           <h3>{siteInfo.title}</h3>
