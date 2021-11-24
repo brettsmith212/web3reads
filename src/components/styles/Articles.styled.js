@@ -30,12 +30,32 @@ export const Card = styled.div`
   flex-direction: column;
   text-align: center;
 
+  :hover {
+    transform: scale(1.05);
+  }
+
   h3 {
     font-size: ${({ theme }) => theme.fontSize.h3};
+    text-overflow: ellipsis;
   }
 
   p {
     margin-top: 3%;
     font-size: 1.4rem;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    margin-top: 5%;
+    font-size: ${({ theme }) => theme.fontSize.h4};
+    text-overflow: ellipsis;
+  }
+  a:hover {
+    color: grey;
+  }
+
+  img {
+    width: 20rem;
+    height: 10rem;
   }
 `;
