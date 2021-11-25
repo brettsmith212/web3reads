@@ -40,9 +40,13 @@ function Articles() {
     urlPreview();
   }, []);
 
-  setTimeout(() => {
-    console.log("RETURNED: ", information);
-  }, 5000);
+  const cardClickedHandler = () => {
+    window.open(siteInfo.url);
+  };
+
+  // setTimeout(() => {
+  //   console.log("RETURNED: ", information);
+  // }, 5000);
 
   return (
     <ArticleSection>
@@ -58,12 +62,11 @@ function Articles() {
           </a>
           {/* <img src="./assets/testimg.jpeg" alt="" /> */}
         </Card>
-        <Card>
-          <h3>{siteInfo.title}</h3>
+        <Card onClick={cardClickedHandler}>
           <a href={siteInfo.url} target="_blank">
-            {siteInfo.title}
+            <h3>{siteInfo.title}</h3>
+            <img src={siteInfo.image} alt="" />
           </a>
-          <img src={siteInfo.image} alt="" />
         </Card>
         <Card>Card</Card>
         <Card>Card</Card>

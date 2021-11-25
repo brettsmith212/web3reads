@@ -50,9 +50,6 @@ export const Card = styled.div`
     font-size: ${({ theme }) => theme.fontSize.h4};
     text-overflow: ellipsis;
   }
-  a:hover {
-    color: grey;
-  }
 
   img {
     width: 20rem;
