@@ -19,6 +19,12 @@ export const ModalWrapper = styled.div`
   padding-top: 3rem;
   display: flex;
   justify-content: center;
+`;
+
+export const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   label {
     margin: 1rem;
@@ -31,5 +37,10 @@ export const ModalWrapper = styled.div`
 
   button {
     margin: 1rem;
+  }
+
+  img {
+    /* width: 10rem; */
+    height: 8rem;
   }
 `;
