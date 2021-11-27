@@ -18,12 +18,12 @@ export const Navbar = styled.nav`
   width: 90%;
   height: 80%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 `;
 
 export const Logo = styled.div`
-  width: 100%;
+  width: 35rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -37,5 +37,25 @@ export const Logo = styled.div`
 
   a {
     font-size: ${({ theme }) => theme.fontSize.h2};
+  }
+`;
+
+export const Logger = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    height: 3rem;
+    width: 10rem;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.colors.card};
+    color: ${({ theme }) => theme.colors.fontColor};
+  }
+
+  button:hover {
+    background-color: ${({ theme }) => theme.colors.header};
   }
 `;

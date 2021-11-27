@@ -7,6 +7,7 @@ export const theme = {
     footer: "#dee2e6",
     fontColor: "#fff",
     hr: "#868e96",
+    modal: "rgba(0, 0, 0, 0.8)",
   },
   fontSize: {
     input: "2.2rem",
