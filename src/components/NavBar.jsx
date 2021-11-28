@@ -7,7 +7,7 @@ import {
   Logger,
 } from "./styles/Navbar.styled";
 
-function NavBar() {
+function NavBar({ user, signInWithGoogle, signOut }) {
   return (
     <Wrapper>
       <StyledHeader>
@@ -17,7 +17,11 @@ function NavBar() {
             <a href="#">Web3 Reads</a>
           </Logo>
           <Logger>
-            <button>Log In</button>
+            {user ? (
+              <button onClick={signOut}>Logout</button>
+            ) : (
+              <button onClick={signInWithGoogle}>Log In</button>
+            )}
           </Logger>
         </Navbar>
       </StyledHeader>
