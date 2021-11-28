@@ -29,6 +29,7 @@ export const Card = styled.div`
   align-items: center;
   flex-direction: column;
   text-align: center;
+  cursor: pointer;
 
   :hover {
     transform: scale(1.05);
@@ -52,7 +53,9 @@ export const Card = styled.div`
   }
 
   img {
+    margin-top: 5%;
     width: 20rem;
     height: 10rem;
+    border-radius: 10px;
   }
 `;

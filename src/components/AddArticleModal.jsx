@@ -23,6 +23,7 @@ function AddArticleModal({ showModal, setShowModal }) {
     description: "",
     image: "",
     url: "",
+    publishedDate: "",
   });
 
   const urlData = async () => {
@@ -70,12 +71,15 @@ function AddArticleModal({ showModal, setShowModal }) {
   const handleFirebaseSubmit = async (e) => {
     e.preventDefault();
     const { uid, photoURL } = ctx.auth.currentUser;
+    const { serverTimestamp } = firebase.firestore.FieldValue;
 
     await articlesRef.add({
       title: siteInfo.title,
       description: siteInfo.description,
       image: siteInfo.image,
       url: siteInfo.url,
+      createdAt: serverTimestamp(),
+      publishedDate: siteInfo.publishedDate,
       uid,
       photoURL,
     });
@@ -102,6 +106,18 @@ function AddArticleModal({ showModal, setShowModal }) {
                   type="text"
                   id="desc"
                   defaultValue={siteInfo.description}
+                />
+                <label htmlFor="date">Published Date:</label>
+                <input
+                  type="date"
+                  id="date"
+                  defaultValue={siteInfo.publishedDate}
+                  onChange={(e) =>
+                    setSiteInfo({
+                      ...siteInfo,
+                      publishedDate: e.target.value,
+                    })
+                  }
                 />
                 <label htmlFor="img">Image:</label>
                 <input type="text" id="img" defaultValue={siteInfo.image} />

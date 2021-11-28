@@ -1,82 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ArticleSection, Cards, Card } from "./styles/Articles.styled";
+// import AuthContext from "../auth-context";
+
+// Firebase Requirements
+import firebase from "../Firebase";
+import "firebase/compat/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+const firestore = firebase.firestore();
 
 function Articles() {
-  const [siteInfo, setSiteInfo] = useState({
-    title: "",
-    description: "",
-    image: "",
-    url: "",
-  });
+  const loadedArticles = [];
+  let articlesList = [];
 
-  const [information, setInformation] = useState("");
+  // Pull Dashes for Current User from Firebase
+  const articlesRef = firestore.collection("articles");
+  const query = articlesRef.orderBy("publishedDate", "desc");
+  const [firebaseArticles] = useCollectionData(query, { idField: "id" });
 
-  const urlPreview = async () => {
-    try {
-      const res = await fetch(
-        `http://api.linkpreview.net/?key=${
-          import.meta.env.VITE_URL_PREVIEW_KEY_TEST
-        }&q=https://www.google.com`
-      );
-      // const res = await fetch(
-      //   `http://api.linkpreview.net/?key=${
-      //     import.meta.env.VITE_URL_PREVIEW_KEY
-      //   }&q=https://www.freecodecamp.org/news/breaking-into-ethereum-crypto-web3-as-a-developer/`
-      // );
-      const data = await res.json();
-      setSiteInfo({
-        title: data.title,
-        description: data.description,
-        image: data.image,
-        url: data.url,
+  if (firebaseArticles) {
+    for (let i = 0; i < firebaseArticles.length; i++) {
+      loadedArticles.push({
+        title: firebaseArticles[i].title,
+        description: firebaseArticles[i].description,
+        image: firebaseArticles[i].image,
+        url: firebaseArticles[i].url,
+        createdAt: firebaseArticles[i].createdAt,
+        publishedDate: firebaseArticles[i].publishedDate,
+        uid: firebaseArticles[i].uid,
       });
-      setInformation(data);
-    } catch (err) {
-      console.log("ERROR: ", err);
     }
-  };
+  }
 
-  useEffect(() => {
-    urlPreview();
-  }, []);
-
-  const cardClickedHandler = () => {
-    window.open(siteInfo.url);
-  };
-
-  // setTimeout(() => {
-  //   console.log("RETURNED: ", information);
-  // }, 5000);
+  articlesList = loadedArticles.map((article) => {
+    return (
+      <Card
+        onClick={() => {
+          window.open(article.url);
+        }}
+        key={article.createdAt}
+      >
+        <a href={article.url} target="_blank">
+          <h3>{article.title}</h3>
+          <p>{article.publishedDate}</p>
+          <img src={article.image} alt="" />
+        </a>
+      </Card>
+    );
+  });
 
   return (
     <ArticleSection>
-      <Cards>
-        <Card>
-          <h3>How to Break into Ethereum, Crypto, and Web3 as a Developer</h3>
-          <p>11-22-2021</p>
-          <a
-            href="https://www.freecodecamp.org/news/breaking-into-ethereum-crypto-web3-as-a-developer/"
-            target="_blank"
-          >
-            How to Break into Ethereum, Crypto, and Web3 as a Developer
-          </a>
-          {/* <img src="./assets/testimg.jpeg" alt="" /> */}
-        </Card>
-        <Card onClick={cardClickedHandler}>
-          <a href={siteInfo.url} target="_blank">
-            <h3>{siteInfo.title}</h3>
-            <img src={siteInfo.image} alt="" />
-          </a>
-        </Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-        <Card>Card</Card>
-      </Cards>
+      <Cards>{articlesList}</Cards>
     </ArticleSection>
   );
 }
