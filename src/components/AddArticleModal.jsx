@@ -1,14 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import {
   ModalBackground,
   ModalWrapper,
   FormWrapper,
 } from "./styles/AddArticleModal.styled";
 
+// Firebase Requirements
+import AuthContext from "../auth-context";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+const firestore = firebase.firestore();
+
 function AddArticleModal({ showModal, setShowModal }) {
   const modalRef = useRef();
   const urlInputRef = useRef();
   const [url, setUrl] = useState("");
+  const ctx = useContext(AuthContext);
 
   const [siteInfo, setSiteInfo] = useState({
     title: "",
@@ -16,8 +24,6 @@ function AddArticleModal({ showModal, setShowModal }) {
     image: "",
     url: "",
   });
-
-  const [information, setInformation] = useState("");
 
   const urlData = async () => {
     try {
@@ -40,7 +46,6 @@ function AddArticleModal({ showModal, setShowModal }) {
         image: data.image,
         url: data.url,
       });
-      setInformation(data);
     } catch (err) {
       console.log("ERROR: ", err);
     }
@@ -60,6 +65,22 @@ function AddArticleModal({ showModal, setShowModal }) {
     urlData();
   };
 
+  // Firebase handling
+  const articlesRef = firestore.collection("articles");
+  const handleFirebaseSubmit = async (e) => {
+    e.preventDefault();
+    const { uid, photoURL } = ctx.auth.currentUser;
+
+    await articlesRef.add({
+      title: siteInfo.title,
+      description: siteInfo.description,
+      image: siteInfo.image,
+      url: siteInfo.url,
+      uid,
+      photoURL,
+    });
+  };
+
   return (
     <>
       {showModal ? (
@@ -73,7 +94,7 @@ function AddArticleModal({ showModal, setShowModal }) {
               </form>
             </FormWrapper>
             <FormWrapper>
-              <form>
+              <form onSubmit={handleFirebaseSubmit}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" id="title" defaultValue={siteInfo.title} />
                 <label htmlFor="desc">Description:</label>

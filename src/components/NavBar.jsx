@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../auth-context";
 import {
   Wrapper,
   StyledHeader,
@@ -7,7 +8,9 @@ import {
   Logger,
 } from "./styles/Navbar.styled";
 
-function NavBar({ user, signInWithGoogle, signOut }) {
+function NavBar() {
+  const ctx = useContext(AuthContext);
+
   return (
     <Wrapper>
       <StyledHeader>
@@ -17,10 +20,10 @@ function NavBar({ user, signInWithGoogle, signOut }) {
             <a href="#">Web3 Reads</a>
           </Logo>
           <Logger>
-            {user ? (
-              <button onClick={signOut}>Logout</button>
+            {ctx.isLoggedIn ? (
+              <button onClick={() => ctx.signOut()}>Logout</button>
             ) : (
-              <button onClick={signInWithGoogle}>Log In</button>
+              <button onClick={() => ctx.signIn()}>Log In</button>
             )}
           </Logger>
         </Navbar>
