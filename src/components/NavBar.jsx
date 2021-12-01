@@ -16,7 +16,6 @@ function NavBar() {
       <StyledHeader>
         <Navbar>
           <Logo>
-            <img src="./src/assets/astronaut.png" alt="astronaut" />
             <a href="#">Web3 Reads</a>
           </Logo>
           <Logger>
