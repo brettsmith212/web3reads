@@ -35,7 +35,7 @@ function AddArticleModal({ showModal, setShowModal }) {
       //   );
 
       const res = await fetch(
-        `http://api.linkpreview.net/?key=${
+        `https://api.linkpreview.net/?key=${
           import.meta.env.VITE_URL_PREVIEW_KEY
         }&q=${url}`
       );
