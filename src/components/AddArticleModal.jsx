@@ -28,12 +28,21 @@ function AddArticleModal({ showModal, setShowModal }) {
 
   const urlData = async () => {
     try {
+      // DEV SERVER TEST API ACCESS
       //   const res = await fetch(
       //     `http://api.linkpreview.net/?key=${
       //       import.meta.env.VITE_URL_PREVIEW_KEY_TEST
       //     }&q=${url}`
       //   );
 
+      // DEV SERVER API ACCESS
+      // const res = await fetch(
+      //   `https://api.linkpreview.net/?key=${
+      //     import.meta.env.VITE_URL_PREVIEW_KEY
+      //   }&q=${url}`
+      // );
+
+      // NETLIFY API ACCESS
       const res = await fetch(
         `https://api.linkpreview.net/?key=${
           import.meta.env.VITE_URL_PREVIEW_KEY
