@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Icon } from "../styles/Icon.styled";
+import AuthContext from "../../auth-context";
 
-function SearchIcon() {
+function SearchIcon(props) {
+  const ctx = useContext(AuthContext);
+  const showSearchHandler = () => {
+    props.setShowSearch((prev) => !prev);
+    if (props.showSearch === true) {
+      ctx.setSearch("");
+    }
+  };
+
   return (
-    <Icon>
+    <Icon onClick={showSearchHandler}>
       <svg
         width="20"
         height="20"

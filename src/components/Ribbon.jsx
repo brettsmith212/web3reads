@@ -10,6 +10,7 @@ import AddArticleModal from "./AddArticleModal";
 
 function Ribbon() {
   const [showModal, setShowModal] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const ctx = useContext(AuthContext);
 
   const openModal = () => {
@@ -17,14 +18,29 @@ function Ribbon() {
     console.log(showModal);
   };
 
+  const onChangeHandler = (e) => {
+    ctx.setSearch(e.target.value);
+  };
+
   return (
     <RibbonSection>
       <RibbonMenu>
-        <SearchIcon />
-        <RibbonButton>Date</RibbonButton>
-        <RibbonButton>Popular</RibbonButton>
-        {ctx.isAdmin ? (
-          <RibbonButton onClick={openModal}>Add Article</RibbonButton>
+        <SearchIcon showSearch={showSearch} setShowSearch={setShowSearch} />
+        {showSearch ? (
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={onChangeHandler}
+          ></input>
+        ) : null}
+        {!showSearch ? (
+          <>
+            <RibbonButton>Date</RibbonButton>
+            <RibbonButton>Popular</RibbonButton>
+            {ctx.isAdmin ? (
+              <RibbonButton onClick={openModal}>Add Article</RibbonButton>
+            ) : null}{" "}
+          </>
         ) : null}
         <AddArticleModal showModal={showModal} setShowModal={setShowModal} />
       </RibbonMenu>

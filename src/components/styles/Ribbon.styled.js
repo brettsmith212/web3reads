@@ -25,6 +25,20 @@ export const RibbonMenu = styled.div`
   a:hover {
     transform: scale(1.1);
   }
+
+  input {
+    font-size: ${({ theme }) => theme.fontSize.h4};
+    height: 4rem;
+    width: 88%;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: ${({ theme }) => theme.colors.card};
+    color: ${({ theme }) => theme.colors.fontColor};
+
+    ::placeholder {
+      color: ${({ theme }) => theme.colors.body};
+    }
+  }
 `;
 
 export const RibbonButton = styled.button`

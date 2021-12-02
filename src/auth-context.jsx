@@ -18,6 +18,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [search, setSearch] = useState("");
 
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
@@ -68,6 +69,8 @@ export const AuthContextProvider = (props) => {
         signOut: signOut,
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
+        setSearch: setSearch,
+        search: search,
       }}
     >
       {props.children}
