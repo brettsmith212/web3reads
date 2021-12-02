@@ -1,6 +1,10 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../auth-context";
-import { RibbonSection, RibbonMenu } from "./styles/Ribbon.styled";
+import {
+  RibbonSection,
+  RibbonMenu,
+  RibbonButton,
+} from "./styles/Ribbon.styled";
 import SearchIcon from "./assets/search.jsx";
 import AddArticleModal from "./AddArticleModal";
 
@@ -17,8 +21,11 @@ function Ribbon() {
     <RibbonSection>
       <RibbonMenu>
         <SearchIcon />
-        <a href="#">Popular</a>
-        {ctx.isAdmin ? <button onClick={openModal}>Add Article</button> : null}
+        <RibbonButton>Date</RibbonButton>
+        <RibbonButton>Popular</RibbonButton>
+        {ctx.isAdmin ? (
+          <RibbonButton onClick={openModal}>Add Article</RibbonButton>
+        ) : null}
         <AddArticleModal showModal={showModal} setShowModal={setShowModal} />
       </RibbonMenu>
     </RibbonSection>
