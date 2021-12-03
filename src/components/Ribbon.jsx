@@ -22,6 +22,14 @@ function Ribbon() {
     ctx.setSearch(e.target.value);
   };
 
+  const orderByDateHandler = () => {
+    ctx.setOrderBy("publishedDate");
+  };
+
+  const orderByPopularHandler = () => {
+    ctx.setOrderBy("title");
+  };
+
   return (
     <RibbonSection>
       <RibbonMenu>
@@ -35,8 +43,10 @@ function Ribbon() {
         ) : null}
         {!showSearch ? (
           <>
-            <RibbonButton>Date</RibbonButton>
-            <RibbonButton>Popular</RibbonButton>
+            <RibbonButton onClick={orderByDateHandler}>
+              Most Recent
+            </RibbonButton>
+            <RibbonButton onClick={orderByPopularHandler}>Popular</RibbonButton>
             {ctx.isAdmin ? (
               <RibbonButton onClick={openModal}>Add Article</RibbonButton>
             ) : null}{" "}

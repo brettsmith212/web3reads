@@ -19,6 +19,7 @@ export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [search, setSearch] = useState("");
+  const [orderBy, setOrderBy] = useState("publishedDate");
 
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
@@ -71,6 +72,8 @@ export const AuthContextProvider = (props) => {
         isAdmin: isAdmin,
         setSearch: setSearch,
         search: search,
+        setOrderBy: setOrderBy,
+        orderBy: orderBy,
       }}
     >
       {props.children}

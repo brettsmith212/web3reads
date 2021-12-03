@@ -16,7 +16,7 @@ function Articles() {
 
   // Pull Dashes for Current User from Firebase
   const articlesRef = firestore.collection("articles");
-  const query = articlesRef.orderBy("publishedDate", "desc");
+  const query = articlesRef.orderBy(ctx.orderBy, "desc");
   const [firebaseArticles] = useCollectionData(query, { idField: "id" });
 
   if (firebaseArticles) {
