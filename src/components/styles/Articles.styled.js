@@ -11,21 +11,21 @@ export const Cards = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   gap: 5rem;
 `;
 
 export const Card = styled.div`
   width: 30rem;
-  height: 30rem;
-  padding: 2.5%;
+  height: 35rem;
+  padding: 1%;
   background-color: ${({ theme }) => theme.colors.card};
   display: flex;
   justify-content: center;
   border-radius: 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   text-align: center;
@@ -34,6 +34,11 @@ export const Card = styled.div`
   :hover {
     transform: scale(1.05);
   }
+`;
+
+export const ContentDiv = styled.div`
+  height: 100%;
+  display: flex;
 
   h3 {
     font-size: ${({ theme }) => theme.fontSize.h3};
@@ -54,8 +59,23 @@ export const Card = styled.div`
 
   img {
     margin-top: 5%;
-    width: 20rem;
-    height: 10rem;
+    width: 80%;
+    max-height: 14rem;
+    /* width: 20rem; */
+    /* height: 10rem; */
     border-radius: 10px;
+  }
+`;
+
+export const VoteDiv = styled.div`
+  width: 100%;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  h4 {
+    font-size: ${({ theme }) => theme.fontSize.h4};
   }
 `;

@@ -27,7 +27,7 @@ function Ribbon() {
   };
 
   const orderByPopularHandler = () => {
-    ctx.setOrderBy("title");
+    ctx.setOrderBy("upVote");
   };
 
   return (

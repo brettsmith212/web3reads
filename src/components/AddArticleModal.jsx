@@ -82,16 +82,24 @@ function AddArticleModal({ showModal, setShowModal }) {
     const { uid, photoURL } = ctx.auth.currentUser;
     const { serverTimestamp } = firebase.firestore.FieldValue;
 
-    await articlesRef.add({
-      title: siteInfo.title,
-      description: siteInfo.description,
-      image: siteInfo.image,
-      url: siteInfo.url,
-      createdAt: serverTimestamp(),
-      publishedDate: siteInfo.publishedDate,
-      uid,
-      photoURL,
-    });
+    await articlesRef
+      .add({
+        title: siteInfo.title,
+        description: siteInfo.description,
+        image: siteInfo.image,
+        url: siteInfo.url,
+        createdAt: serverTimestamp(),
+        publishedDate: siteInfo.publishedDate,
+        docId: "blank",
+        uid,
+        photoURL,
+      })
+      .then(function (docRef) {
+        console.log("Document ID: ", docRef.id);
+        articlesRef.doc(docRef.id).update({
+          docId: docRef.id,
+        });
+      });
   };
 
   return (

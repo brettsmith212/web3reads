@@ -1,6 +1,13 @@
 import React, { useContext } from "react";
-import { ArticleSection, Cards, Card } from "./styles/Articles.styled";
+import {
+  ArticleSection,
+  Cards,
+  Card,
+  ContentDiv,
+  VoteDiv,
+} from "./styles/Articles.styled";
 import AuthContext from "../auth-context";
+import UpVoteIcon from "./assets/upVote.jsx";
 
 // Firebase Requirements
 import firebase from "../Firebase";
@@ -12,7 +19,6 @@ function Articles() {
   const loadedArticles = [];
   let articlesList = [];
   const ctx = useContext(AuthContext);
-  console.log(ctx.search);
 
   // Pull Dashes for Current User from Firebase
   const articlesRef = firestore.collection("articles");
@@ -33,23 +39,30 @@ function Articles() {
         createdAt: filteredArticles[i].createdAt,
         publishedDate: filteredArticles[i].publishedDate,
         uid: filteredArticles[i].uid,
+        upVote: filteredArticles[i].upVote,
+        docId: filteredArticles[i].docId,
       });
     }
   }
 
   articlesList = loadedArticles.map((article) => {
     return (
-      <Card
-        onClick={() => {
-          window.open(article.url);
-        }}
-        key={article.createdAt}
-      >
-        <a href={article.url} target="_blank">
-          <h3>{article.title}</h3>
-          <p>{article.publishedDate}</p>
-          <img src={article.image} alt="" />
-        </a>
+      <Card key={article.createdAt}>
+        <ContentDiv
+          onClick={() => {
+            window.open(article.url);
+          }}
+        >
+          <a href={article.url} target="_blank">
+            <h3>{article.title}</h3>
+            <p>{article.publishedDate}</p>
+            <img src={article.image} alt="" />
+          </a>
+        </ContentDiv>
+        <VoteDiv>
+          <UpVoteIcon id={article.docId} upVote={article.upVote}></UpVoteIcon>
+          <h4>{article.upVote}</h4>
+        </VoteDiv>
       </Card>
     );
   });
