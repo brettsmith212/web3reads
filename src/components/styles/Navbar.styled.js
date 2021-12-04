@@ -37,6 +37,8 @@ export const Logo = styled.div`
 
   a {
     font-size: ${({ theme }) => theme.fontSize.h2};
+    // Change to pointer when it is a real link
+    cursor: default;
   }
 `;
 
