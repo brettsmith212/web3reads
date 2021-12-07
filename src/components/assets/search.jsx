@@ -4,6 +4,7 @@ import AuthContext from "../../auth-context";
 
 function SearchIcon(props) {
   const ctx = useContext(AuthContext);
+
   const showSearchHandler = () => {
     props.setShowSearch((prev) => !prev);
     if (props.showSearch === true) {

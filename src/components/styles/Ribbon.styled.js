@@ -10,12 +10,12 @@ export const RibbonSection = styled.section`
 `;
 
 export const RibbonMenu = styled.div`
-  width: 100%;
+  width: 88%;
   margin-left: 4%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 2%;
+  gap: 2rem;
 
   a {
     cursor: pointer;
@@ -43,9 +43,14 @@ export const RibbonMenu = styled.div`
 
 export const RibbonButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.h4};
-  background-color: ${({ theme }) => theme.colors.body};
+  background-color: ${(props) =>
+    props.active
+      ? ({ theme }) => theme.colors.card
+      : ({ theme }) => theme.colors.body};
   color: ${({ theme }) => theme.colors.fontColor};
   border: none;
+  border-radius: 10px;
+  padding: 1.2rem;
   cursor: pointer;
 
   :hover {

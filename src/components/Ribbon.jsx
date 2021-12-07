@@ -30,8 +30,15 @@ function Ribbon() {
     ctx.setOrderBy("upVote");
   };
 
+  const escPressed = (e) => {
+    if (e.key === "Escape") {
+      ctx.setSearch("");
+      setShowSearch(false);
+    }
+  };
+
   return (
-    <RibbonSection>
+    <RibbonSection onKeyDown={escPressed} tabIndex="1">
       <RibbonMenu>
         <SearchIcon showSearch={showSearch} setShowSearch={setShowSearch} />
         {showSearch ? (
@@ -43,10 +50,25 @@ function Ribbon() {
         ) : null}
         {!showSearch ? (
           <>
-            <RibbonButton onClick={orderByDateHandler}>
-              Most Recent
-            </RibbonButton>
-            <RibbonButton onClick={orderByPopularHandler}>Popular</RibbonButton>
+            {ctx.orderBy === "publishedDate" ? (
+              <>
+                <RibbonButton onClick={orderByDateHandler} active>
+                  Most Recent
+                </RibbonButton>
+                <RibbonButton onClick={orderByPopularHandler}>
+                  Popular
+                </RibbonButton>
+              </>
+            ) : (
+              <>
+                <RibbonButton onClick={orderByDateHandler}>
+                  Most Recent
+                </RibbonButton>
+                <RibbonButton onClick={orderByPopularHandler} active>
+                  Popular
+                </RibbonButton>
+              </>
+            )}
             {ctx.isAdmin ? (
               <RibbonButton onClick={openModal}>Add Article</RibbonButton>
             ) : null}{" "}
