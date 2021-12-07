@@ -93,6 +93,8 @@ function AddArticleModal({ showModal, setShowModal }) {
         docId: "blank",
         uid,
         photoURL,
+        upVote: 0,
+        voted: [],
       })
       .then(function (docRef) {
         console.log("Document ID: ", docRef.id);

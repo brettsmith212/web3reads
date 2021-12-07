@@ -11,6 +11,7 @@ import AddArticleModal from "./AddArticleModal";
 function Ribbon() {
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showMyArticles, setShowMyArticles] = useState(false);
   const ctx = useContext(AuthContext);
 
   const openModal = () => {
@@ -34,6 +35,25 @@ function Ribbon() {
     if (e.key === "Escape") {
       ctx.setSearch("");
       setShowSearch(false);
+    }
+  };
+
+  const myArticlesToggleHandler = () => {
+    setShowMyArticles((prev) => !prev);
+    console.log("ARTICLE: ", showMyArticles);
+  };
+
+  const myArticlesTabSelected = () => {
+    if (showMyArticles) {
+      return (
+        <>
+          <RibbonButton onClick={orderByDateHandler}>Most Recent</RibbonButton>
+          <RibbonButton onClick={orderByPopularHandler}>Popular</RibbonButton>
+          <RibbonButton onClick={myArticlesToggleHandler} active>
+            My Upvoted Articles
+          </RibbonButton>
+        </>
+      );
     }
   };
 
@@ -71,7 +91,7 @@ function Ribbon() {
             )}
             {ctx.isAdmin ? (
               <RibbonButton onClick={openModal}>Add Article</RibbonButton>
-            ) : null}{" "}
+            ) : null}
           </>
         ) : null}
         <AddArticleModal showModal={showModal} setShowModal={setShowModal} />
