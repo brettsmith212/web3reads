@@ -48,6 +48,7 @@ export const Logger = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 3rem;
 
   button {
     height: 3rem;
@@ -59,5 +60,9 @@ export const Logger = styled.div`
 
   button:hover {
     background-color: ${({ theme }) => theme.colors.header};
+  }
+
+  h4 {
+    font-size: ${({ theme }) => theme.fontSize.h4};
   }
 `;
