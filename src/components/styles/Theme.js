@@ -8,6 +8,7 @@ export const theme = {
     fontColor: "#fff",
     hr: "#868e96",
     modal: "rgba(0, 0, 0, 0.8)",
+    voted: "#40c057",
   },
   fontSize: {
     input: "2.2rem",

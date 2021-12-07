@@ -41,6 +41,7 @@ function Articles() {
         uid: filteredArticles[i].uid,
         upVote: filteredArticles[i].upVote,
         docId: filteredArticles[i].docId,
+        voted: filteredArticles[i].voted,
       });
     }
   }
@@ -60,7 +61,12 @@ function Articles() {
           </a>
         </ContentDiv>
         <VoteDiv>
-          <UpVoteIcon id={article.docId} upVote={article.upVote}></UpVoteIcon>
+          <UpVoteIcon
+            id={article.docId}
+            upVote={article.upVote}
+            uid={article.uid}
+            voted={article.voted}
+          ></UpVoteIcon>
           <h4>{article.upVote}</h4>
         </VoteDiv>
       </Card>
