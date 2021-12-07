@@ -21,16 +21,18 @@ function upVote(props) {
     // console.log(props.id);
     // console.log("VOTED ARR: ", props.voted);
     // console.log("CURRENT UID: ", userId);
-
-    if (!props.voted.includes(userId)) {
-      newVotedArr.push(userId);
-      newUpvote += 1;
+    if (ctx.user !== null) {
+      if (!props.voted.includes(userId)) {
+        newVotedArr.push(userId);
+        newUpvote += 1;
+        articlesRef.doc(props.id).update({
+          upVote: newUpvote,
+          voted: newVotedArr,
+        });
+      }
+    } else {
+      return alert("Please log in to upvote an article!");
     }
-
-    articlesRef.doc(props.id).update({
-      upVote: newUpvote,
-      voted: newVotedArr,
-    });
   };
 
   return (
