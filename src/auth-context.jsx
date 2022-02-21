@@ -50,10 +50,7 @@ export const AuthContextProvider = (props) => {
         console.log("ERROR", e);
       });
   };
-
-  const poop = () => {
-    console.log("poop");
-  };
+ 
 
   const signOut = () => {
     setIsLoggedIn(false);
